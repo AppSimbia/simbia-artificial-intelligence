@@ -1,0 +1,19 @@
+# FUNCIONALIDADE - VITRINE DE SOLUÇÕES SUSTENTÁVEIS
+
+### O que faz
+Espaço interativo onde empreendedores, cientistas e cooperativas expõem soluções que transformam resíduos em produtos ou serviços.
+
+### Como funciona
+Interface visual estilo galeria com filtros avançados:
+- Tipo de solução (composto orgânico, polímero, combustível, têxtil etc.)
+- Tipo de resíduo reaproveitado
+- Setor de origem
+
+Cada vitrine apresenta:
+- Prova de conceito (fotos, vídeos, protótipos)
+- Ficha técnica (eficiência, viabilidade, emissão associada)
+- Certificações (ISO, Selo Verde, Anvisa etc.)
+- Impacto ambiental estimado (calculado automaticamente)
+- Contato direto com a organização proponente
+
+Não é um marketplace, mas sim uma vitrine inspiracional e técnica.

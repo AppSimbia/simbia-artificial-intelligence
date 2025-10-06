@@ -11,5 +11,6 @@ router_chain = Agent (
     shots=[],
     has_history=True,
     tools=None,
-    json_output=True    
+    docs_route=None,
+    json_output=False    
 ).generate_chain()
