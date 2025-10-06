@@ -1,0 +1,15 @@
+# FUNCIONALIDADE - CATÁLOGO DE RESÍDUOS
+
+### O que faz
+Permite que cada indústria cadastre seus resíduos de forma detalhada e padronizada.
+
+### Como funciona
+Interface com formulário guiado que exige o preenchimento de dados técnicos e visuais:
+- Tipo de resíduo (perigoso, não perigoso, classe I, II A ou II B – ABNT NBR 10004)
+- Origem (processo produtivo, máquina, planta)
+- Composição química ou biológica
+- Volume gerado
+- Frequência de geração (pontual, contínua, sazonal)
+- Fotos do material
+
+Essa estrutura garante rastreabilidade, padronização e facilita o reaproveitamento inteligente.

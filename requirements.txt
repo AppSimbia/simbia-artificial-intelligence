@@ -3,4 +3,11 @@ Flask
 python-dotenv
 
 redis
+pymongo
 
+langchain
+langchain_google_genai
+langchain_community
+langchain_mongodb
+sentence-transformers
+faiss-cpu

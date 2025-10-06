@@ -1,0 +1,14 @@
+# FUNCIONALIDADE - MATCH INTELIGENTE
+
+### O que faz
+Sugere automaticamente quem pode reutilizar um resíduo, com base em inteligência artificial.
+
+### Como funciona
+O algoritmo cruza dados do Catálogo com soluções cadastradas, considerando:
+- Compatibilidade técnica entre resíduo e uso pretendido
+- Histórico de reaproveitamento de casos semelhantes
+- Localização geográfica (logística e transporte)
+- Licenciamento ambiental e sanitário das partes envolvidas
+- Legislação específica do estado ou município
+
+O sistema aprende com os matches realizados e aprimora suas sugestões. Cada match gera acesso direto à Vitrine de Soluções, com chat integrado para negociação, agendamento de visitas técnicas ou envio de amostras.
