@@ -13,7 +13,7 @@ import os
 from ..repository.redis_repository import r
 
 def list_posts() -> pd.DataFrame:
-    query = "SELECT * FROM VW_PostList LIMIT 100;"
+    query = "SELECT * FROM VW_PostList;"
     conn, cursor = postgres_repository.open_connection()
     df = pd.read_sql_query(query, conn)
     cursor.close()
