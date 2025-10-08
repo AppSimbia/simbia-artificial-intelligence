@@ -92,7 +92,6 @@ def format_data(df: pd.DataFrame, user_search: pd.DataFrame):
     return df_dummies, user_search_dummies
 
 def get_knee(df: pd.DataFrame) -> int:
-    r.flushall()
     # Vendo se o k está no redis
     redis_elbow_key = os.getenv("REDISKEY_ELBOW")
     if len(df) < 10:
