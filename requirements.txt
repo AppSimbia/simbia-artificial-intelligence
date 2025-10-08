@@ -4,6 +4,7 @@ python-dotenv
 
 redis
 pymongo
+psycopg2
 
 langchain
 langchain_google_genai
@@ -11,3 +12,7 @@ langchain_community
 langchain_mongodb
 sentence-transformers
 faiss-cpu
+
+pandas
+scikit-learn
+kneed
