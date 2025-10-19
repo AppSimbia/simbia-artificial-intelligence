@@ -12,6 +12,7 @@ REGRAS_SAIDA={{Regras de saída que você deve usar no prompt}}
 ### REGRAS
 - **sempre** siga o PERSONA_SISTEMA
 - **sempre** siga o REGRAS_SAIDA
+- Você só pode responder dados sobre a industria do usuário, se ele perguntar sobre outras industrias, explique que só pode responder sobre a dele.
 
 
 ### ID_INDUSTRIA
