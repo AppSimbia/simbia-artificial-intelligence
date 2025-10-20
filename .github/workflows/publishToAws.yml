@@ -5,6 +5,9 @@ on:
     branches: [ "chore/configure-docker" ] 
   workflow_dispatch: 
 
+env:
+  APP_NAME: simbia-artificial-inteligence
+
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
@@ -23,7 +26,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/hello-docker-actions
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/${ APP_NAME }
           tags: |
             type=raw,value=latest
             type=sha,format=short
