@@ -1,5 +1,5 @@
 from typing import Optional, List
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_core.prompts import (
     ChatPromptTemplate,
     MessagesPlaceholder,
@@ -8,17 +8,18 @@ from langchain_core.prompts import (
 )
 from langchain_core.prompts.few_shot import FewShotChatMessagePromptTemplate
 from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.runnables import RunnableLambda
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.output_parsers import StrOutputParser, JsonOutputParser
 from langchain.memory import ChatMessageHistory
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.tools.retriever import create_retriever_tool
 from langchain_mongodb.chat_message_histories import MongoDBChatMessageHistory
 
-
+from dotenv import load_dotenv
+load_dotenv()
 
 from datetime import datetime
 today = datetime.now().date()
@@ -37,6 +38,12 @@ def get_session_history(session_id) -> ChatMessageHistory:
         collection_name=MONGO_COLLECTION_NAME,
         session_id=session_id
     )
+
+def inject_session_id(inputs, config):
+    session_id = config.get("configurable", {}).get("session_id")
+    # debug
+    print(f"🪵 [DEBUG] inject_session_id() config={config}")
+    return {**inputs, "session_id": session_id}
 
 cut_shots = """
 ### ALERTA
@@ -119,8 +126,9 @@ class Agent:
             docs_split = splitter.split_documents(docs)
 
             # Carregar embeddings do HuggingFaceEmbeddings (gratuito)
-            embeddings = HuggingFaceEmbeddings(
-                model_name="sentence-transformers/all-MiniLM-L6-v2"
+            embeddings = GoogleGenerativeAIEmbeddings(
+                model="models/text-embedding-004",
+                google_api_key=os.getenv("GEMINI_API_KEY")
             )
 
             # Criar o vetor FAISS
@@ -143,7 +151,18 @@ class Agent:
 
         # Instancia o prompt
         prompt = ChatPromptTemplate.from_messages(messages)
+
+        # Coloca a data atual no prompt
         prompt = prompt.partial(today_local=today.isoformat())
+
+        # Pega o session_id e coloca no prompt pra IA saber qual a industria pras TOOLS
+        # prompt = prompt.partial(
+        #    session_id=lambda **kwargs: (
+        #         print("\n🪵 KWARGS DEBUG:", kwargs),
+        #         kwargs["config"]["configurable"]["session_id"]
+        #     )[-1]
+        # )
+        
 
         # Decide o parser caso seja json ou nao
         parser = JsonOutputParser() if self.json_output else StrOutputParser()
@@ -159,7 +178,7 @@ class Agent:
                 agent = create_tool_calling_agent(llm, self.tools, prompt)   
                 agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
                 chain = RunnableWithMessageHistory(
-                    agent_executor,                           #chain_original (agora é o agente)
+                    RunnableLambda(inject_session_id) | agent_executor,                           #chain_original (agora é o agente)
                     get_session_history=get_session_history,  #funcao para historico de sessao
                     input_messages_key="input",               #tudo no prompt que for {input} ele coloca o prompt do usuario
                     history_messages_key="chat_history"       #tudo que for {chat_history} ele coloca o histórico do usuario
@@ -170,13 +189,9 @@ class Agent:
                 baseChain = prompt | llm | parser
 
                 chain = RunnableWithMessageHistory(
-                    baseChain,                                #chain_original
+                    RunnableLambda(inject_session_id) | baseChain,                                #chain_original
                     get_session_history=get_session_history,  #funcao para historico de sessao
                     input_messages_key="input",               #tudo no prompt que for {usuario} ele coloca o prompt do usuario
                     history_messages_key="chat_history"       #tudo que for {chat_history} ele coloca o histórico do usuario
                 )
                 return chain
-
-
-
-    

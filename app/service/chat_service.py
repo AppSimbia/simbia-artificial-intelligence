@@ -2,7 +2,8 @@ from ..repository import gemini_repository
 import json
 
 agents_functions = {
-    "features": gemini_repository.call_features
+    "features": gemini_repository.call_features,
+    "industry_data": gemini_repository.call_industry_data
 }
 
 def get_judge_response(user_input: str, agent_return:str, user_id: str) -> str:
