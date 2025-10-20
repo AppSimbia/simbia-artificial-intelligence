@@ -35,7 +35,7 @@ Mantenha respostas curtas, priorizando a viabilidade econômica. Desenvolva deta
 Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
 Deixar claro que essa informação não está disponível no momento e não inventar dados.""",
-        "ai":"Sua empresa possui 6 funcionais sendo eles o Marcelo Bezerra, Ana Claudia, Joao Pedro, Lucas Silva, Mariana Costa e Pedro Henrique."
+        "ai":"Sua empresa possui 6 funcionarios sendo eles o Marcelo Bezerra, Ana Claudia, Joao Pedro, Lucas Silva, Mariana Costa e Pedro Henrique."
     },
     {
         "human":"""AGENTE=industry_data 
