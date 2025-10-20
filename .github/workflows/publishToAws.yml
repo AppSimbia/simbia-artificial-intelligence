@@ -19,6 +19,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
+      - name: Gerar metadados da imagem
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/hello-docker-actions
+          tags: |
+            type=raw,value=latest
+            type=sha,format=short
+
       - name: Construir e Publicar a imagem
         uses: docker/build-push-action@v4
         with:
