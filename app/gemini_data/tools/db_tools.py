@@ -99,11 +99,8 @@ def FindEmployeeByIndustry(
         query = """
             SELECT Employee.idemployee
                  , cEmployeeName
-                 , r.cRoleName
                  , Employee.cActive
               FROM Employee
-              JOIN EmployeeRole er ON er.idEmployee = Employee.idEmployee
-              JOIN Role r ON r.idRole = er.idRole
               JOIN Industry I on Employee.idIndustry = I.idIndustry
              WHERE I.idIndustry = %s
         """
@@ -214,7 +211,7 @@ def FindChallengesByIndustry(
     """Consulta todos os desafios/soluções (perguntas e respostas) de todas as indústrias, com filtros de texto opcionais (datas são desconsideradas)."""
  
     match_cond = {}
- 
+     
     if text:
         palavras = [p.strip() for p in text.split() if p.strip()]
         regexes = [re.compile(p, re.IGNORECASE) for p in palavras]
