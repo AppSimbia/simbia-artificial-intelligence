@@ -1,5 +1,5 @@
 from typing import Optional, List
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_core.prompts import (
     ChatPromptTemplate,
     MessagesPlaceholder,
@@ -15,7 +15,6 @@ from langchain.memory import ChatMessageHistory
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.tools.retriever import create_retriever_tool
 from langchain_mongodb.chat_message_histories import MongoDBChatMessageHistory
 
@@ -127,8 +126,9 @@ class Agent:
             docs_split = splitter.split_documents(docs)
 
             # Carregar embeddings do HuggingFaceEmbeddings (gratuito)
-            embeddings = HuggingFaceEmbeddings(
-                model_name="sentence-transformers/all-MiniLM-L6-v2"
+            embeddings = GoogleGenerativeAIEmbeddings(
+                model="models/text-embedding-004",
+                google_api_key=os.getenv("GEMINI_API_KEY")
             )
 
             # Criar o vetor FAISS
