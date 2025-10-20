@@ -158,8 +158,8 @@ def FindMatchByIndustry(
  
     match_cond = {
         "$or": [
-            {"id_funcionario_comprador": {"$in": employee_ids}},
-            {"id_funcionario_vendedor": {"$in": employee_ids}},
+            {"idPurchaser": {"$in": employee_ids}},
+            {"idSeller": {"$in": employee_ids}},
         ]
     }
  
@@ -176,9 +176,9 @@ def FindMatchByIndustry(
         {"$match": match_cond},
         {"$project": {
             "_id": 0,
-            "id_post": 1,
-            "id_funcionario_comprador": 1,
-            "id_funcionario_vendedor": 1,
+            "idPost": 1,
+            "idPurchaser": 1,
+            "idSeller": 1,
             "status": 1,
             "data": 1
         }},
@@ -223,20 +223,20 @@ def FindChallengesByIndustry(
         match_cond["$or"] = []
         for regex in regexes:
             match_cond["$or"].extend([
-                {"titulo": regex},
-                {"texto": regex},
-                {"solucoes.titulo": regex},
-                {"solucoes.texto": regex}
+                {"title": regex},
+                {"text": regex},
+                {"solutions.title": regex},
+                {"solutions.text": regex}
             ])
  
     pipeline = [
         {"$match": match_cond},
         {"$project": {
             "_id": 0,
-            "id_funcionario_pergunta": 1,
-            "titulo": 1,
-            "texto": 1,
-            "solucoes": 1
+            "idEmployeeQuestion": 1,
+            "title": 1,
+            "text": 1,
+            "solutions": 1
         }},
         {"$sort": {"_id": -1}}
     ]
