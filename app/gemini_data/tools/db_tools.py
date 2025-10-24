@@ -130,8 +130,8 @@ def FindMatchByIndustry(
     
     
     sql_query = """
-        SELECT idemployee
-          FROM Employee
+        SELECT cCNPJ
+          FROM Industry
          WHERE idIndustry = %s
            AND cActive = '1';
     """
@@ -140,9 +140,9 @@ def FindMatchByIndustry(
     try:
         cur.execute(sql_query, tuple(params))
         rows = cur.fetchall()
-        employee_ids = [row[0] for row in rows]
+        cCNPJ = [row[0] for row in rows]
     except Exception as e:
-        return {"status": "error", "message": "Erro ao buscar funcionários SQL", "detail": str(e)}
+        return {"status": "error", "message": "Erro ao buscar os CNPJ no SQL", "detail": str(e)}
     finally:
         try:
             cur.close()
@@ -150,13 +150,13 @@ def FindMatchByIndustry(
         except Exception:
             pass
 
-    if not employee_ids:
-        return {"status": "ok", "message": "Nenhum funcionário ativo encontrado.", "matches": []}
+    if not cCNPJ:
+        return {"status": "ok", "message": "Nenhuma empresa ativa encontrada.", "matches": []}
  
     match_cond = {
         "$or": [
-            {"idPurchaser": {"$in": employee_ids}},
-            {"idSeller": {"$in": employee_ids}},
+            {"idIndustryPurchaser": {"$in": cCNPJ}},
+            {"idIndustrySeller": {"$in": cCNPJ}},
         ]
     }
  
@@ -174,8 +174,10 @@ def FindMatchByIndustry(
         {"$project": {
             "_id": 0,
             "idPost": 1,
-            "idPurchaser": 1,
-            "idSeller": 1,
+            "idEmployeePurchaser": 1,
+            "idEmployeeSeller": 1,
+            "idIndustryPurchaser": 1,
+            "idIndustrySeller":1,
             "status": 1,
             "data": 1
         }},
