@@ -19,32 +19,45 @@ def list_posts() -> pd.DataFrame:
     df = pd.read_sql_query(query, conn)
     cursor.close()
     conn.close()
+    df = df.dropna()
+    if len(df) == 0:
+        raise "Não há dados o suficiente para realizar a busca."
     return df
 
 # Baseado no Input, gera uma linha com dados iguais o do DataFrame de posts
 def get_data(category_id: int, quantity: int, measure_unit: int, industry_id:int) -> pd.DataFrame:
-    conn, cursor = postgres_repository.open_connection()
-    query = "SELECT ccategoryname FROM productcategory WHERE idproductcategory = %s;"
-    cursor.execute(query, (category_id,))
-    category = cursor.fetchone()[0]
+    try:
 
-    query2 = "SELECT nlatitude, nlongitude, cindustrytypename FROM industry i JOIN industrytype it ON it.idindustrytype = i.idindustrytype WHERE idindustry = %s;"
-    cursor.execute(query2, (industry_id,))
-    data = cursor.fetchone()
-    latitude = data[0]
-    longitude = data[1]
-    industry_type = data[2]
+        conn, cursor = postgres_repository.open_connection()
+        query = "SELECT ccategoryname FROM productcategory WHERE idproductcategory = %s;"
+        cursor.execute(query, (category_id,))
+        category = cursor.fetchone()[0]
 
-    data_dict = {
-        "ccategoryname": [str(category)],
-        "cindustrytypename": [str(industry_type)],
-        "nlatitude": [float(latitude)],
-        "nlongitude": [float(longitude)],
-        "nquantity": [int(quantity)],
-        "cmeasureunit": [str(measure_unit)]
-    }
+        if not category:
+            raise "Não há dados o suficiente para realizar a busca."
 
-    return pd.DataFrame(data_dict)
+        query2 = "SELECT nlatitude, nlongitude, cindustrytypename FROM industry i JOIN industrytype it ON it.idindustrytype = i.idindustrytype WHERE idindustry = %s;"
+        cursor.execute(query2, (industry_id,))
+        data = cursor.fetchone()
+        latitude = data[0]
+        longitude = data[1]
+        industry_type = data[2]
+
+        if not latitude or not longitude or not industry_type:
+            raise "Não há dados o suficiente para realizar a busca."
+
+        data_dict = {
+            "ccategoryname": [str(category)],
+            "cindustrytypename": [str(industry_type)],
+            "nlatitude": [float(latitude)],
+            "nlongitude": [float(longitude)],
+            "nquantity": [int(quantity)],
+            "cmeasureunit": [str(measure_unit)]
+        }
+
+        return pd.DataFrame(data_dict)
+    except Exception as e:
+        raise "Não há dados o suficiente para realizar a busca."
 
 # Retorna os pesos de cada coluna
 def get_weights(df: pd.DataFrame) -> dict:
@@ -60,7 +73,8 @@ def get_weights(df: pd.DataFrame) -> dict:
         if c.startswith("cindustrytypename_"):
             weights[c] = 0.5
         if c.startswith("cmeasureunit_"):
-            weights[c] = 1
+            weights[c] = 0.5
+
 
     weights["distance"] = 1.5
     weights["nquantity"] = 1
