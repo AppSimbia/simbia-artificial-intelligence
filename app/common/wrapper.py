@@ -1,9 +1,9 @@
 from functools import wraps
 from flask import request, jsonify
-from ..security.authentication import valida_header
+from ..security.authentication import validate_header
 
-
-def valida_json(required_fields):
+# Valida se o json no request tem todos os campos necessários
+def validate_json(required_fields):
     def decorator(fn):
         @wraps(fn)
         def wrapper(*args, **kwargs):
@@ -15,11 +15,12 @@ def valida_json(required_fields):
         return wrapper
     return decorator
 
+# Valida se o Authorization é valido
 def require_auth(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
         header = request.headers.get("Authorization")
-        if not valida_header(header):
+        if not validate_header(header):
             return jsonify({'error':'Token inválido'}), 401
         return fn(*args, **kwargs)
     return wrapper

@@ -5,7 +5,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-#Registrando todos os blueprints no blueprint.py
+#Registrando todos os blueprints no init do routes
 import app.routes as routes
 for name, bp in vars(routes).items():
     if isinstance(bp, Blueprint):

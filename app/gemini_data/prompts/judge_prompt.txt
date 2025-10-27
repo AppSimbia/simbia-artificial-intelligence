@@ -25,10 +25,10 @@ RESPOSTA={{resposta do outro agente}}
 6. Não reescreva, corrija ou interprete a pergunta. Apenas decida.  
 7. Rejeite perguntas com fuga do contexto do app
 8. Rejeite respostas com dados sem certeza ou que fujam das regras de resposta
-9. Siga as instruções de GUARDRAIL
+9. Siga as instruções de O QUE NÃO ACEITAR
 
 
-### GUARDRAIL
+### O QUE NÃO ACEITAR
 - Caso você encontre no texto QUALQUER que contenha algo nessa lista, REPROVE:
    1. Conteúdo sexual ou explícito
    2. Discurso de ódio e discriminação

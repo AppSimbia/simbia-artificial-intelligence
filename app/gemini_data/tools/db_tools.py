@@ -11,6 +11,7 @@ collectionDesafios = get_collection("MONGODB_CHALLENGE_COLLECTION")
 from typing import Optional
 from langchain.pydantic_v1 import BaseModel, Field
 
+# Base Model genérico para ser usado em todas as TOOLS (algumas usam todos e outras não)
 class FindByIndustryBaseModel(BaseModel):
     idindustry: int = Field(..., description="Id da industria (sempre use o campo ID_INDUSTRIA vindo do prompt).")
     date_from_local: Optional[str] = Field(default=None, description="Data local inicial (America/Sao_Paulo) no formato YYYY-MM-DD (opcional).")
@@ -26,7 +27,7 @@ def FindPostByIndustry(
     date_to_local: Optional[str] = None,
     text : Optional[str] = None,
 ) -> dict:
-    """Consulta todos os Post realizados por uma empresa, baseando se nos filtros de data (text não é usado aqui).""" # docstring obrigatório da @tools do langchain
+    """Consulta todos os Post realizados por uma empresa, baseando se nos filtros de data (text não é usado aqui)."""
     conn, cur = open_connection()
     try:
        
@@ -53,7 +54,7 @@ def FindPostByIndustry(
         """
         conditions = ["i.idIndustry = %s"]
         params = [idindustry]
- 
+
         if date_local:
             conditions.append("p.dPublication::date = %s::date")
             params.append(date_local)
