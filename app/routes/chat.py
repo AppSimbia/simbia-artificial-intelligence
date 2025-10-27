@@ -1,12 +1,12 @@
 from flask import request, jsonify, Blueprint
-from ..common.wrapper import valida_json, require_auth
+from ..common.wrapper import validate_json, require_auth
 from ..service import chat_service
 
 bp =  Blueprint('chat', __name__)
 
 @bp.route(f"/question", methods=["POST"])
 @require_auth
-@valida_json(['industry_id','message'])
+@validate_json(['industry_id','message'])
 def question(): 
     data = request.get_json()
     print(data)

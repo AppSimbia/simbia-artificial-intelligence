@@ -1,12 +1,12 @@
 from flask import request, jsonify, Blueprint
-from ..common.wrapper import valida_json, require_auth
+from ..common.wrapper import validate_json, require_auth
 from ..service import match_service
 
 bp =  Blueprint('match', __name__)
 
 @bp.route(f"/suggest", methods=["POST"])
 @require_auth
-@valida_json(["category_id", "quantity", "measure_unit", "industry_id"])
+@validate_json(["category_id", "quantity", "measure_unit", "industry_id"])
 def suggest(): 
     data = request.get_json()
     try:

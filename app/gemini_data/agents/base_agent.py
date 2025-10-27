@@ -41,8 +41,6 @@ def get_session_history(session_id) -> ChatMessageHistory:
 
 def inject_session_id(inputs, config):
     session_id = config.get("configurable", {}).get("session_id")
-    # debug
-    print(f"🪵 [DEBUG] inject_session_id() config={config}")
     return {**inputs, "session_id": session_id}
 
 cut_shots = """
@@ -154,15 +152,6 @@ class Agent:
 
         # Coloca a data atual no prompt
         prompt = prompt.partial(today_local=today.isoformat())
-
-        # Pega o session_id e coloca no prompt pra IA saber qual a industria pras TOOLS
-        # prompt = prompt.partial(
-        #    session_id=lambda **kwargs: (
-        #         print("\n🪵 KWARGS DEBUG:", kwargs),
-        #         kwargs["config"]["configurable"]["session_id"]
-        #     )[-1]
-        # )
-        
 
         # Decide o parser caso seja json ou nao
         parser = JsonOutputParser() if self.json_output else StrOutputParser()

@@ -1,6 +1,7 @@
 
 import math
 
+# Calcula distancia fisica basiada em latitude e longitude
 def get_distance(lat1, lon1, lat2, lon2):
     R = 6371.0  # raio da Terra em km
 
