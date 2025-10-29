@@ -13,15 +13,23 @@ import os
 from ..repository.redis_repository import r
 
 # Retorna todos os posts
-def list_posts() -> pd.DataFrame:
-    query = "SELECT * FROM VW_PostList;"
+def list_posts(id_industry) -> pd.DataFrame:
+    query = """SELECT idpost,
+                ccategoryname,
+                cindustrytypename,
+                nlatitude,
+                nlongitude,
+                nquantity,
+                cmeasureunit
+             FROM VW_PostList
+            WHERE idIndustry <> %s;"""
     conn, cursor = postgres_repository.open_connection()
-    df = pd.read_sql_query(query, conn)
+    df = pd.read_sql_query(query, conn, params=(id_industry,))
     cursor.close()
     conn.close()
     df = df.dropna()
     if len(df) == 0:
-        raise "Não há dados o suficiente para realizar a busca."
+        raise Exception("Não há dados o suficiente para realizar a busca.")
     return df
 
 # Baseado no Input, gera uma linha com dados iguais o do DataFrame de posts
@@ -34,7 +42,7 @@ def get_data(category_id: int, quantity: int, measure_unit: int, industry_id:int
         category = cursor.fetchone()[0]
 
         if not category:
-            raise "Não há dados o suficiente para realizar a busca."
+            raise Exception("Não há dados o suficiente para realizar a busca.")
 
         query2 = "SELECT nlatitude, nlongitude, cindustrytypename FROM industry i JOIN industrytype it ON it.idindustrytype = i.idindustrytype WHERE idindustry = %s;"
         cursor.execute(query2, (industry_id,))
@@ -44,7 +52,7 @@ def get_data(category_id: int, quantity: int, measure_unit: int, industry_id:int
         industry_type = data[2]
 
         if not latitude or not longitude or not industry_type:
-            raise "Não há dados o suficiente para realizar a busca."
+            raise Exception("Não há dados o suficiente para realizar a busca.")
 
         data_dict = {
             "ccategoryname": [str(category)],
@@ -57,7 +65,7 @@ def get_data(category_id: int, quantity: int, measure_unit: int, industry_id:int
 
         return pd.DataFrame(data_dict)
     except Exception as e:
-        raise "Não há dados o suficiente para realizar a busca."
+        raise Exception("Não há dados o suficiente para realizar a busca.")
 
 # Retorna os pesos de cada coluna
 def get_weights(df: pd.DataFrame) -> dict:
@@ -167,7 +175,7 @@ def get_distances(df: pd.DataFrame, user_search: pd.DataFrame):
 
 def return_suggestion(user_data: dict):
     # 1. Listamos os posts e pegamos os dados do usuário
-    df_posts = list_posts()
+    df_posts = list_posts(user_data["industry_id"])
     user_search = get_data(user_data["category_id"], user_data["quantity"], user_data["measure_unit"], user_data["industry_id"])
 
     # 2. Formatamos os dados do usuário para o Kmeans

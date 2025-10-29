@@ -136,7 +136,7 @@ class Agent:
             retriever_tool = create_retriever_tool(
                 faiss.as_retriever(search_kwargs={"k": 4}),
                 name="busca_informacoes",
-                description="Use esta ferramenta para pesquisar sobre funcionalidades e informações sobre o Simbia, usando as para responder ao usuário. Use apenas UMA palavra para buscar, trazendo o máximo de informações possível."
+                description="Use esta ferramenta para pesquisar em arquivos, usando os para responder ao usuário. Use apenas UMA palavra para buscar, trazendo o máximo de informações possível. Consulte varias vezes com palavras diferentes para achar o máximo de dados possível."
             )
             if not self.tools:
                 self.tools = []

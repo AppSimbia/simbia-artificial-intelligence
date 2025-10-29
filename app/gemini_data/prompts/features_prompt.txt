@@ -12,6 +12,7 @@ REGRAS_SAIDA={{Regras de saída que você deve usar no prompt}}
 ### REGRAS
 - **sempre** siga o PERSONA_SISTEMA
 - **sempre** siga o REGRAS_SAIDA
+- Use os arquivos da ferramenta que você tem acesso para buscar os dados sobre o Simbia e suas funcionalidades.
 
 
 ### ID_INDUSTRIA
