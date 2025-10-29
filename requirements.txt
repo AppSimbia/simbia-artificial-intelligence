@@ -1,17 +1,17 @@
-Flask
+Flask==3.1.2
 
-python-dotenv
+python-dotenv==1.1.1
 
-redis
-pymongo
-psycopg2
+redis==6.4.0
+pymongo==4.15.2
+psycopg2==2.9.10
 
-langchain
-langchain_google_genai
-langchain_community
-langchain_mongodb
-faiss-cpu
+langchain==0.3.27
+langchain_google_genai==2.1.12
+langchain_community==0.3.30
+langchain_mongodb==0.7.0
+faiss-cpu==1.12.0
 
-pandas
-scikit-learn
-kneed
+pandas==2.3.3
+scikit-learn==1.7.2
+kneed==0.8.5
