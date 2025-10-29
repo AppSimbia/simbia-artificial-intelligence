@@ -6,11 +6,46 @@ agents_functions = {
     "industry_data": gemini_repository.call_industry_data
 }
 
+BLOCKED_WORLDS = [
+    # 1. Conteúdo sexual ou explícito
+    "pornografia","pornô","porno","porn","nude","nudes","erótico","erotico","masturbação","masturbacao",
+    "orgasmo","penetração","penetracao","pênis","penis","vagina","sexo explicito","sexo explícito",
+    "onlyfans","boquete","pau","buceta","cu","foder","punheta","ejaculação","ejaculacao","transar",
+    "anal","oral","chupar","broxa","broxar","prostíbulo","prostituição","prostituicao","fetiche",
+    "peitinho","bunda","tesão","tesao","pornos","hardcore","dp","bdsm",
+
+    # 2. Discurso de ódio e discriminação
+    "nazismo","neonazista","racista","racismo","antissemita","antissemitismo","homofóbico","homofobico",
+    "homofobia","transfobia","misógino","misogino","misoginia","xenofobia","xenófobo",
+    "supremacista","eugenia","escravizar","degenerado","cripple","aleijado",
+
+    # 3. Informações pessoais e confidenciais
+    "cpf","rg","senha","token","api key","chave de acesso","cartão de crédito","cartao de credito",
+    "cvv","pix","telefone pessoal","endereço residencial","endereco residencial","dados pessoais",
+    "número do cartão","numero do cartao","localização exata","geolocalização",
+
+    # 4. Atividades ilegais
+    "pedofilia","pornografia infantil","estupro","incesto","tráfico humano","trafico humano",
+    "sequestro","extorsão","extorsao","genocídio","genocidio","terrorismo","bomba","explosivo",
+    "assassinato","homicídio","homicidio","tortura","mutilação","mutilacao","zoofilia","bestialidade",
+    "necrofilia","fraude bancária","fraude fiscal","hackear","invasão de sistema","pirataria","roubo",
+    "golpe","estelionato","lavagem de dinheiro","tráfico","trafico","crime organizado",
+
+    # 5. Linguagem ofensiva ou desrespeitosa
+    "porra","merda","caralho","arrombado","otário","otario","imbecil","idiota",
+    "fdp","corno","vagabundo","desgraçado","escroto","lixo","burro","retardado",
+    "babaca","otaria","nojento","nojenta","bosta","pau no cu","boceta","piranha","cadela","otaria"
+]
+
 def get_judge_response(user_input: str, agent_return:str, user_id: str) -> str:
     judge_message = f"""
     PERGUNTA_ORIGINAL={user_input}
     RESPOSTA_AGENTE={agent_return}
     """
+   
+    for x in judge_message.split(" "):
+        if x.lower() in BLOCKED_WORLDS:
+            return "Não posso responder essa pergunta no momento, reformule a pergunta e tente novamente."
 
     judge_response = str(gemini_repository.call_judge(judge_message, user_id))
     if judge_response != "APROVADO":
