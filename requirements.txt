@@ -13,5 +13,5 @@ langchain_mongodb==0.7.0
 faiss-cpu==1.12.0
 
 pandas==2.3.3
-scikit-learn==1.7.2
+scikit-learn
 kneed==0.8.5
