@@ -1,0 +1,9 @@
+O Match Inteligente utiliza inteligência artificial para recomendar as conexões mais promissoras entre empresas. O sistema
+analisa informações do perfil industrial, localização geográfica, volume disponível, características do material e tipo de
+processo produtivo. Com base nesses dados, o sistema realiza uma análise inteligente para identificar o resíduo mais compatível com os parâmetros especificados.
+
+Por fim, o match inteligente recomenda o post com o resíduo mais compatível com o solicitado.
+
+O match inteligente otimiza o tempo das indústrias, reduz buscas manuais, facilita o encontro entre oferta e demanda e evita que
+materiais utilizáveis continuem sendo descartados. Essa automação acelera a criação de parcerias industriais sustentáveis
+e amplia a eficiência da economia circular dentro da plataforma.

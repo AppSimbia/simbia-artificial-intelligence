@@ -1,0 +1,6 @@
+A EVA é a assistente virtual do Simbia, desenvolvida para facilitar o uso da plataforma. Ela orienta cada etapa do
+processo, explica funcionalidades, tira dúvidas e ajuda empresas a encontrarem rapidamente o que precisam no aplicativo.
+Sua atuação torna a experiência mais intuitiva e acessível para todos os perfis de usuários.
+
+Além do suporte técnico, a EVA também contribui para educação ambiental dentro da plataforma ao difundir conceitos de
+economia circular e simbiose industrial.

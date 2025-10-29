@@ -1,0 +1,8 @@
+Funcionalidade que centraliza e organiza todas as legislações ambientais aplicáveis ao tipo específico de indústria do usuário informado na hora de fazer o cadastro no aplicativo.
+
+O Guia Legal do Simbia ajuda empresas a cumprirem as legislações ambientais vigentes. Ele reúne normas, regulamentos,
+boas práticas, exigências de transporte e descarte, além de requisitos para licenciamento ambiental específicos de cada
+setor. Com isso, os usuários acessam rapidamente as regras corretas para evitar multas e riscos.
+
+Esse recurso fortalece a governança ambiental das organizações e garante segurança jurídica nas trocas industriais
+realizadas dentro da plataforma.

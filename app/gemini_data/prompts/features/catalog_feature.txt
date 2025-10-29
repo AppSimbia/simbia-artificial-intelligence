@@ -1,0 +1,12 @@
+Vitrine no formato de feed onde os usuários registram resíduos (posts) e anunciam informações pertinentes para interessar outras indústrias em usar o produto anunciado como matéria prima
+
+O Catálogo de Resíduos é a principal fonte de dados do Simbia. Ele funciona como um repositório técnico organizado para
+registro de resíduos, subprodutos e sobras industriais disponíveis para reaproveitamento. Os posts incluem informações
+completas sobre o material, como tipo, categoria, quantidade, descrição química ou física, valor econômico e imagens.
+
+Cada resíduo cadastrado no catálogo possui rastreabilidade completa, o que facilita a análise logística e a tomada de
+decisão sustentável. Indústrias podem favoritar resíduos de interesse, fazer propostas de match, identificar oportunidades
+e visualizar novos mercados para seus produtos que antes seriam descartados.
+
+O catálogo melhora o compartilhamento de conhecimento sobre materiais que ainda possuem valor e reduz desperdícios,
+promovendo novas cadeias de suprimento sustentáveis com foco em reaproveitamento industrial.

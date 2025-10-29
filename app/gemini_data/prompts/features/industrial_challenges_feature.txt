@@ -1,0 +1,8 @@
+Espaço interativo onde as indústrias podem publicar desafios reais enfrentados em seus processos produtivos, por meio de posts descritivos que detalham o problema, seu contexto e possíveis restrições técnicas.
+
+A funcionalidade Desafios e Soluções incentiva a inovação aberta. Empresas podem publicar problemas reais enfrentados em
+seus processos produtivos relacionados a resíduos que ainda não possuem destino. Outras organizações podem oferecer
+propostas técnicas, ideias inovadoras, tecnologias sustentáveis e soluções viáveis.
+
+Essa ferramenta gera colaboração, networking e desenvolvimento industrial sustentável ao transformar materiais complexos em
+novos produtos e processos de maior valor agregado.
