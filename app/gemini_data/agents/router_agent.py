@@ -23,6 +23,7 @@ REGRAS_SAIDA=- Método para usar como exemplo:
     Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
     Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
         """
     },
     {
@@ -40,6 +41,7 @@ REGRAS_SAIDA=- Método para usar como exemplo:
     Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
     Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
         """
     },
     {
@@ -57,6 +59,7 @@ REGRAS_SAIDA=- Método para usar como exemplo:
     Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
     Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
         """
     },
     {
@@ -74,6 +77,7 @@ REGRAS_SAIDA=- Método para usar como exemplo:
     Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
     Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
         """
     }
 ]
@@ -84,7 +88,7 @@ router_chain = Agent (
     llm_temperature=0,
     llm_top_p=0.95,
     prompt=prompt,
-    shots=[],
+    shots=router_shots,
     has_history=True,
     tools=None,
     docs_route=None,

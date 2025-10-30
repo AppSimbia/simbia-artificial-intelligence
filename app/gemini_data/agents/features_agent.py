@@ -19,7 +19,9 @@ Mantenha respostas curtas, priorizando a viabilidade econômica. Desenvolva deta
 - Foco:
 Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
-Deixar claro que essa informação não está disponível no momento e não inventar dados.""",
+Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
+""",
         "ai":"O match é uma funcionalidade do Simbia que conecta empresas com interesses complementares em resíduos industriais. Ele identifica oportunidades de reaproveitamento com base nos dados cadastrados, promovendo parcerias que geram valor econômico e reduzem impactos ambientais."
     },
     {
@@ -35,7 +37,9 @@ Mantenha respostas curtas, priorizando a viabilidade econômica. Desenvolva deta
 - Foco:
 Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
-Deixar claro que essa informação não está disponível no momento e não inventar dados.""",
+Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
+""",
         "ai":"Para cadastrar um resíduo, acesse o módulo de gestão de resíduos no aplicativo, selecione 'Novo cadastro' e insira as informações técnicas e econômicas exigidas. Isso permitirá que o sistema identifique possíveis matches com outras indústrias."
     },
     {
@@ -51,7 +55,9 @@ Mantenha respostas curtas, priorizando a viabilidade econômica. Desenvolva deta
 - Foco:
 Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
-Deixar claro que essa informação não está disponível no momento e não inventar dados.""",
+Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
+""",
         "ai":"O Simbia permite o cadastro de diversos tipos de materiais, como resíduos sólidos, líquidos e gases industriais. A categorização deve seguir os parâmetros técnicos definidos no sistema para garantir a precisão dos matches."
     },
     {
@@ -67,7 +73,9 @@ Mantenha respostas curtas, priorizando a viabilidade econômica. Desenvolva deta
 - Foco:
 Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
-Deixar claro que essa informação não está disponível no momento e não inventar dados.""",
+Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
+""",
         "ai":"Sim, o Simbia oferece relatórios de desempenho e histórico de matches. Eles podem ser acessados no painel de controle da empresa, permitindo análise técnica e tomada de decisão estratégica."
     },
     {
@@ -83,7 +91,9 @@ Mantenha respostas curtas, priorizando a viabilidade econômica. Desenvolva deta
 - Foco:
 Não use emojis e não fale sobre assuntos fora do escopo do Simbia. Caso o usuário peça informações que não façam parte do escopo do Simbia ou sobre economia circular, responda que a sua função é restrita ao aplicativo Simbia e a economia circular. 
 - Caso não haja dados ou histórico do usuário:
-Deixar claro que essa informação não está disponível no momento e não inventar dados.""",
+Deixar claro que essa informação não está disponível no momento e não inventar dados.
+- NÃO use markdowns (*, -, etc) além do \\n. Responda apenas como texto.
+""",
         "ai":"A busca por parceiros no Simbia é realizada por meio do sistema de match inteligente, que cruza os dados dos resíduos cadastrados com as necessidades de outras indústrias. O usuário pode visualizar sugestões de conexão diretamente no painel de oportunidades."
     }
 ]
@@ -94,7 +104,7 @@ features_chain = Agent (
     llm_temperature=0.7,
     llm_top_p=0.95,
     prompt=prompt,
-    shots=[],
+    shots=features_shots,
     has_history=True,
     tools=None,
     docs_route=FEATURES_FOLDER,
