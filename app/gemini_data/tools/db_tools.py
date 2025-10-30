@@ -38,9 +38,27 @@ def FindPostByIndustry(
                   , p.cTitle
                   , p.cDescription
                   , p.nQuantity
-                  , p.cMeasureUnit
+                  , CASE
+                    WHEN p.cMeasureUnit = '1'
+                    THEN 'Quilo'
+                    WHEN p.cMeasureUnit = '2'
+                    THEN 'Metro'
+                    WHEN p.cMeasureUnit = '3'
+                    THEN 'Litro'
+                    WHEN p.cMeasureUnit = '4'
+                    THEN 'Unidade'
+                    ELSE 'Indefinido'
+                    END AS cMeasureUnit
                   , p.dPublication
-                  , p.cStatus
+                  , CASE
+                    WHEN p.cStatus = '1'
+                    THEN 'Aguardando aprovação'
+                    WHEN p.cStatus = '2'
+                    THEN 'Aprovado'
+                    WHEN p.cStatus = '3'
+                    THEN 'Reprovado'
+                    ELSE 'Indefinido'
+                    END AS cStatus
                FROM Post p
                JOIN productcategory pc ON pc.idproductcategory = p.idproductcategory
                JOIN industry        i  ON i.idindustry         = p.idindustry
