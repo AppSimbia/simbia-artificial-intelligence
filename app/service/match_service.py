@@ -10,7 +10,6 @@ import pandas as pd
 
 import os
 
-from ..repository.redis_repository import r
 
 # Retorna todos os posts
 def list_posts(id_industry) -> pd.DataFrame:
@@ -129,13 +128,9 @@ def format_data(df: pd.DataFrame, user_search: pd.DataFrame):
 
 # Aqui descubro o melhor K para o Kmeans
 def get_knee(df: pd.DataFrame) -> int:
-    redis_elbow_key = os.getenv("REDISKEY_ELBOW")
     # Se não tiver 10 dados, eu escolho 1 como K, para evitar gastar processamento
     if len(df) < 10:
         knee = 1
-    # Vendo se o k já está no redis
-    elif r.exists(redis_elbow_key) and int(r.get(redis_elbow_key)) <= len(df):
-        knee = int(r.get(redis_elbow_key))
     else:
         # Decidindo o K baseando-se no método do cotovelo
         inertia = []
@@ -158,8 +153,6 @@ def get_knee(df: pd.DataFrame) -> int:
         knee = knee.knee
 
         # Guardando esse valor no Redis por um dia, para economizarmos memória
-        r.set(redis_elbow_key, str(knee), ex=86400)
-
     return knee    
 
 # Aqui eu aplico a fórmula da distância Euclidiana e retorno os valores
