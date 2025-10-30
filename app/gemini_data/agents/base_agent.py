@@ -39,9 +39,9 @@ def get_session_history(session_id) -> ChatMessageHistory:
         session_id=session_id
     )
 
-def inject_session_id(inputs, config):
-    session_id = config.get("configurable", {}).get("session_id")
-    return {**inputs, "session_id": session_id}
+def inject_industry_id(inputs, config):
+    industry_id = config.get("configurable", {}).get("industry_id")
+    return {**inputs, "session_id": industry_id}
 
 cut_shots = """
 ### ALERTA
@@ -167,7 +167,7 @@ class Agent:
                 agent = create_tool_calling_agent(llm, self.tools, prompt)   
                 agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
                 chain = RunnableWithMessageHistory(
-                    RunnableLambda(inject_session_id) | agent_executor,                           #chain_original (agora é o agente)
+                    RunnableLambda(inject_industry_id) | agent_executor,                           #chain_original (agora é o agente)
                     get_session_history=get_session_history,  #funcao para historico de sessao
                     input_messages_key="input",               #tudo no prompt que for {input} ele coloca o prompt do usuario
                     history_messages_key="chat_history"       #tudo que for {chat_history} ele coloca o histórico do usuario
@@ -178,7 +178,7 @@ class Agent:
                 baseChain = prompt | llm | parser
 
                 chain = RunnableWithMessageHistory(
-                    RunnableLambda(inject_session_id) | baseChain,                                #chain_original
+                    RunnableLambda(inject_industry_id) | baseChain,                                #chain_original
                     get_session_history=get_session_history,  #funcao para historico de sessao
                     input_messages_key="input",               #tudo no prompt que for {usuario} ele coloca o prompt do usuario
                     history_messages_key="chat_history"       #tudo que for {chat_history} ele coloca o histórico do usuario
