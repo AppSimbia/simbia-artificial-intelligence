@@ -39,7 +39,3 @@ RESPOSTA={{resposta do outro agente}}
 
 ### PROTOCOLO DE ENCAMINHAMENTO (str)
 Apenas retorne uma palavra: "APROVADO" ou "REPROVADO"
-
-
-### HISTÓRICO DA CONVERSA
-{chat_history}
