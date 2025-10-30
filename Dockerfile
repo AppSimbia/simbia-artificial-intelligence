@@ -14,11 +14,11 @@ WORKDIR /app
 # Define que o que subir aqui é para produção
 ENV FLASK_ENV=production
 
-# expor porta 80
-EXPOSE 80
+# expor porta 443
+EXPOSE 443
 
 # Instalar pacotes Python necessários
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Rodar o flask
-CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=443"]
