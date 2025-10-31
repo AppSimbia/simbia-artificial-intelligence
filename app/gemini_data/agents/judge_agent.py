@@ -58,6 +58,7 @@ RESPOSTA=Não faço ideia, mas você pode verificar isso com o setor de marketin
 
 
 judge_chain = Agent (
+    api_key_env="GEMINI_API_KEY3",
     llm_model='gemini-2.0-flash',
     llm_temperature=0,
     llm_top_p=0.95,

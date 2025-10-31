@@ -57,6 +57,7 @@ today_date_info = """
 
 class Agent:
     def __init__(self,
+                api_key_env:str,
                 llm_model:str,   
                 llm_temperature:Optional[str], 
                 llm_top_p: Optional[str],     
@@ -67,6 +68,7 @@ class Agent:
                 has_history: bool,
                 json_output: bool
                 ):
+        self.api_key_env = api_key_env
         self.llm_model = llm_model
         self.llm_temperature = llm_temperature
         self.llm_top_p = llm_top_p
@@ -83,7 +85,7 @@ class Agent:
             model=self.llm_model,
             temperature = self.llm_temperature,
             top_p= self.llm_top_p,
-            google_api_key=os.getenv("GEMINI_API_KEY")
+            google_api_key=os.getenv(self.api_key_env)
         )
         # Adicionando base do prompt
         example_prompt_base = ChatPromptTemplate.from_messages([
@@ -126,7 +128,7 @@ class Agent:
             # Carregar embeddings do HuggingFaceEmbeddings (gratuito)
             embeddings = GoogleGenerativeAIEmbeddings(
                 model="models/text-embedding-004",
-                google_api_key=os.getenv("GEMINI_API_KEY")
+                google_api_key=os.getenv("GEMINI_API_KEY5")
             )
 
             # Criar o vetor FAISS

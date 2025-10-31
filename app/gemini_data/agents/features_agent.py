@@ -100,6 +100,7 @@ Deixar claro que essa informação não está disponível no momento e não inve
 
 
 features_chain = Agent (
+    api_key_env="GEMINI_API_KEY1",
     llm_model='gemini-2.5-flash',
     llm_temperature=0.7,
     llm_top_p=0.95,
