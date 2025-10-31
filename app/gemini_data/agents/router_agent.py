@@ -84,6 +84,7 @@ REGRAS_SAIDA=- Método para usar como exemplo:
 
 
 router_chain = Agent (
+    api_key_env="GEMINI_API_KEY4",
     llm_model='gemini-2.0-flash',
     llm_temperature=0,
     llm_top_p=0.95,
